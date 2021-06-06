@@ -1,0 +1,389 @@
+//------------------------- Enviornment ---------------------------------------
+
+contract Enviornment_Contract_Saad_Naeem{
+  
+  constructor public {
+
+  }
+  function Display_Name() = "Saad Naeem Roll Number i19-1207";
+  return name;
+}
+
+
+
+
+
+
+
+
+//------------------ Basic Syntax --------------------------------------
+
+contract Saad_Basic_Syntax{
+  string MyRollNumber;
+
+  function function set(string memory YourRollNumber) public {
+  MyRollNumber = YourRollNumber;
+}
+
+function get() public view returns (string memory){
+  
+  return MyRollNumber;
+}
+}
+
+
+
+//--------------------- First Simple Smart Contract -------------------------
+
+
+
+
+pragma solidity >=0.4.0 <0.6.0;
+
+
+contract Saad_First_Simple_Smart_Contract {
+   
+   string FullName;
+   
+   function set(string memory FirstName, string memory LastName) public {
+       
+
+       
+      FullName = string(abi.encodePacked(FirstName, LastName));
+   }
+   
+   
+   function get() public view returns (string memory) {
+       
+     
+      
+      return FullName;
+   }
+}
+
+
+
+
+
+//--------------------------- Comments ----------------------------------
+
+
+
+
+pragma solidity >=0.4.0 <0.6.0;
+
+
+contract Saad_Comments_Tutorial {
+   
+   string FullName;
+   
+   function set(string memory FirstName, string memory LastName) public {
+       
+   /* 
+      Multi line Tutorial:
+      
+      This function takes two parameters
+      
+      That are comma seperated and concatenates them using abi.encodePacked function
+   */
+       
+      FullName = string(abi.encodePacked(FirstName, LastName));
+   }
+   
+   
+   function get() public view returns (string memory) {
+       
+          // Single line tutorial: This Function Returns the concatenated string that was stored in the memory variable
+      
+      return FullName;
+   }
+}
+
+--------------------------------------------    TYPES    -------------------------------------------- 
+
+pragma solidity >=0.4.0 <0.6.0;
+
+
+contract Saad_Types{
+   
+   string FullName = "Saad Naeem";
+   uint256 RollNo = 1207;
+   bool Really = true;
+   
+  
+   
+   
+   function getTypes() public view returns (string memory, uint256, bool) {
+       
+     
+      return (FullName,RollNo,Really);
+      
+      
+   }
+   
+}
+
+--------------------------------------------    VARIABLES & VARIABLE SCOPE    -------------------------------------------- 
+
+pragma solidity ^0.5.0;
+
+contract Main_Contract {
+   uint public PUBLIC_DATA = 10;
+   uint internal INTERNAL_DATA = 20;
+   uint private PRIVATE_DATA = 30;
+   
+   function VIEW_ALL_SCOPES() public view returns (uint,uint,uint) {
+      
+      return (PUBLIC_DATA,INTERNAL_DATA,PRIVATE_DATA);
+   }
+}
+
+
+contract External_Access {
+   Main_Contract Variable = new Main_Contract();
+   function Ext_Acc() public view returns (uint) {
+      return Variable.PUBLIC_DATA(); //EXTERNAL
+   }
+}
+
+
+contract Derived is Main_Contract {
+
+   function RETURN_INTERNAL_DATA_OF_ANOTHER_CLASS() public view returns (uint) {
+      
+      return PRIVATE_DATA;
+   }
+   
+  
+}
+
+
+--------------------------------------------    OPERATORS & LOOPS    -------------------------------------------- 
+
+pragma solidity ^0.5.0;
+
+contract Saad_Opeartors_Loops {
+  
+   // Operators = + - * / % ++ --
+  //  Comparison operators: == != > < >= <=
+ //   Logical Operators: && || !
+ // Loops: for, while, do-while
+   function OPERATORS_AND_LOOPS() public view returns(uint,uint){
+      uint a = 10; 
+      uint b = 2;
+   
+      uint for_len;
+    
+      uint result = a / b;
+      
+    
+      for(uint j = 0; j <= 10; j++) {
+          
+          if (j%2==0 && j>0){
+                // [2,4,6,8,10]
+                for_len++;     
+          }
+      }
+      
+      return (result,for_len); 
+   }
+
+  
+}
+
+
+--------------------------------------------    STRINGS & ARRAYS    -------------------------------------------- 
+
+pragma solidity ^0.5.0;
+
+contract Saad_Array_String{
+    
+    function Get_Array_String() public view returns(uint,string memory,uint){
+        
+            uint[3] memory Array = [uint(1) , 2, 3];
+            string memory String = "Saad Naeem";
+            
+            return(Array.length,String,Array[1]);
+            
+    }
+}
+
+
+--------------------------------------------    SPECIAL VARIABLE    -------------------------------------------- 
+
+
+// demonstrate msg.sender
+pragma solidity ^0.6.6;
+  
+//Some other Special variables: block.difficulty, block.timestamp, msg.sender (address payable)
+
+contract Saad_Naeem_Special_Variable
+{
+    // Creating a mapping
+    mapping (address => uint) rollNo;
+
+    function setRollNO(uint _myNumber) public 
+    {
+    
+        rollNo[msg.sender] = _myNumber;
+    }
+      
+
+    function whatIsMyRollNumber()
+             public view returns (uint) 
+    {
+
+        return rollNo[msg.sender];
+    }
+}
+
+
+--------------------------------------------    FUNCTIONS    -------------------------------------------- 
+
+
+pragma solidity ^0.5.0;
+
+contract SAAD_FUNCTION_TUTORIAL {
+   function getResult() public view returns(uint,uint,uint){
+      uint a = 1; 
+      uint b = 2;
+      uint result = a + b;
+      return (a,b,result);
+   }
+}
+
+
+--------------------------------------------    VIEW FUNCTIONS    -------------------------------------------- 
+
+pragma solidity ^0.5.0;
+
+contract SAAD_PURE_TUTORIAL {
+    
+   function getResult() public view returns(uint,uint,uint){
+      uint a = 1; 
+      uint b = 2;
+      uint result = a + b;
+      //result = outside();
+      return (a,b,result);
+   }
+   
+   function outside() public pure returns(uint){
+       uint z = 23;
+       return(23);
+   }
+}
+
+--------------------------------------------    PURE FUNCTIONS    -------------------------------------------- 
+
+pragma solidity ^0.5.0;
+
+contract SAAD_PURE_TUTORIAL {
+    
+   function getResult() public pure returns(uint,uint,uint){
+      uint a = 1; 
+      uint b = 2;
+      uint result = a + b;
+      result = outside();
+      return (a,b,result);
+   }
+   
+   function outside() public pure returns(uint){
+       uint z = 23;
+       return(23);
+   }
+}
+
+--------------------------------------------    CRYPTOGRAPHIC FUNCTIONS    -------------------------------------------- 
+
+pragma solidity ^0.5.0;
+
+// Other CRYPTOGRAPHIC FUNCTIONS:Keccak-256 , ripemd160
+
+
+contract CRYPTOGRAPHIC_FUNCTIONS {   
+    
+   function SHA256_DEMO() public pure returns(bytes32 result){
+       
+       
+      return sha256("MY NAME IS SAAD NAEEM I19-1207");
+      
+      
+   }  
+}
+
+
+--------------------------------------------    LIBRARY    -------------------------------------------- 
+
+pragma solidity ^0.5.0;
+
+library OutputResult {
+   
+   function displayResult() public view returns (uint){
+       
+     
+       return(1+2);
+       
+   } 
+   
+}
+
+contract A {
+    
+    function A_Using_Library() public view returns (uint){
+    
+    uint  getResult = OutputResult.displayResult();
+    return(getResult);
+    }
+}
+
+
+
+
+contract B {
+    
+    function B_Using_Library() public view returns (uint){
+    
+    uint  getResult = OutputResult.displayResult();
+    return(getResult);
+    
+    }
+}
+
+--------------------------------------------    ERROR HANDLING    -------------------------------------------- 
+
+pragma solidity ^0.5.0;
+
+library OutputResult {
+   
+   function displayResult() public view returns (uint){
+       
+     
+       return(1+2);
+       
+   } 
+   
+}
+
+contract A {
+    
+    function A_Using_Library() public view returns (uint){
+    
+    uint  getResult = OutputResult.displayResult();
+    assert(getResult!=OutputResult.displayResult());
+    return(getResult);
+    }
+}
+
+
+
+
+contract B {
+    
+    function B_Using_Library() public view returns (uint){
+    
+    uint  getResult = OutputResult.displayResult();
+    require(getResult!=OutputResult.displayResult(), "There is an Error");
+    return(getResult);
+    
+    }
+}
